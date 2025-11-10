@@ -23,6 +23,13 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Install LibMan CLI
+        run: dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+
+      - name: Restore client libraries (LibMan)
+        working-directory: MovieCatalog.Web
+        run: ~/.dotnet/tools/libman restore
+
       - name: Build with dotnet
         run: dotnet build MovieCatalog.Web/MovieCatalog.Web.csproj --configuration Release
 
